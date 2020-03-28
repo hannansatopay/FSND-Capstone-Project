@@ -1,7 +1,8 @@
-
 # Casting Agency API
 
-This project is my first step to a fully developed web application following `Udacity Fullstack Developer Nanodegree` guidelines. It's a web app for a casting agency where users can add movies, actors, and relate each actor to the movies he acted in, and vice versa. This project uses python, flask and postgresql for it's backend and hosted on heruko. 
+The Casting Agency models a company that is responsible for creating movies and managing and assigning actors to those movies. You are an Executive Producer within the company and are creating a system to simplify and streamline your process.
+
+This project uses python, flask and postgresql for it's backend and is hosted on Heroku.
 
 All backend code follows [PEP8 style guidelines](https://www.python.org/dev/peps/pep-0008/)
 
@@ -19,7 +20,7 @@ Follow instructions to install the latest version of python for your platform in
 
 #### Virtual Enviornment
 
-I recommend working within a virtual environment whenever using Python for projects. This keeps dependencies for each project separate and organaized. Instructions for setting up a virual enviornment for the platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+Instructions for setting up a virtual environment can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
 
 
 #### PIP Dependencies
@@ -32,10 +33,17 @@ pip install -r requirements.txt
 
 This will install all of the required packages we selected within the `requirements.txt` file.
 
+##### Key Dependencies
+
+- [Flask](http://flask.pocoo.org/)  is a lightweight backend microservices framework. Flask is required to handle requests and responses.
+
+- [SQLAlchemy](https://www.sqlalchemy.org/) is the Python SQL toolkit and ORM.
+
+- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we use to handle cross origin requests from the frontend server.
 
 ## Running the server
 
-first ensure you are working using your created virtual environment.
+First ensure that you are working in the created virtual environment.
 
 To run the server, execute:
 
@@ -51,29 +59,44 @@ Setting the `FLASK_ENV` variable to `development` will detect file changes and r
 
 Setting the `FLASK_APP` variable to `app.py` directs flask to use the this file to find the application.
 
+You can run this API locally at the default `http://127.0.0.1:5000/`
+
+## Testing
+
+To run the tests, run
+```
+dropdb capstone_test
+createdb capstone_test
+psql capstone_test < db.psql
+python test_app.py
+```
+
+## Deployment
+
+The app is deployed on Heroku [link](https://fsndcapstone.herokuapp.com).
 
 ## API Reference
 
 ### Getting Started
 
-- Base URL: You can run this API locally at the default `http://127.0.0.1:5000/`
-- Authentication: This app has 3 users. Each has his own token which are provided in `setup.sh` file. Details about each user privlages are provided below.
+- Base URL: [link](https://fsndcapstone.herokuapp.com)
+- Authentication: This app has 3 users. Each has his own token which are provided in `setup.sh` file. Details about each user privilege are provided below.
 
 ### Endpoints
 
-- GET '/Actors'
-- GET '/Movies'
-- POST '/Actors'
-- POST '/Movies'
-- PATCH '/Actors/<int:id>'
-- PATCH '/Movies/<int:id>'
-- DELETE '/Actors/<int:id>'
-- DELETE '/Movies/<int:id>'
+- GET '/actors'
+- GET '/movies'
+- POST '/actors'
+- POST '/movies'
+- PATCH '/actors/<int:id>'
+- PATCH '/movies/<int:id>'
+- DELETE '/actors/<int:id>'
+- DELETE '/movies/<int:id>'
 
 Following is the demonstration of each endpoint.
 
-- GET '/Actors'
-	- Fetch all Actor info from db
+- GET '/actors'
+	- Fetch all Actor info from DB
 	- Request Argument : None
 	- Returns : JSON response containing all actors with their info, and request status
 	- example
@@ -96,8 +119,8 @@ Following is the demonstration of each endpoint.
 		}
 		```
 
-- GET '/Movies'
-	- Fetch all Movies info from db
+- GET '/movies'
+	- Fetch all Movies info from DB
 	- Request Argument : None
 	- Returns : JSON response containing all movies with their info, and request status
 	- example
@@ -118,8 +141,8 @@ Following is the demonstration of each endpoint.
 		}
 		```
 
-- POST '/Actors'
-	- Insert Actor info into db
+- POST '/actors'
+	- Insert Actor info into DB
 	- Request Argument :  `name` `email` `age` `salary` `movie_ID`
 	- Returns : JSON response containing request status
 	- example
@@ -129,8 +152,8 @@ Following is the demonstration of each endpoint.
 		}
 		```
 
-- POST '/Movies'
-	- Insert Movie info into db
+- POST '/movies'
+	- Insert Movie info into DB
 	- Request Argument : `name` `length` `genre` `actor_ID`
 	- Returns : JSON response containing request status
 	- example
@@ -140,9 +163,9 @@ Following is the demonstration of each endpoint.
 		}
 		```
 
-- PATCH '/Actors/<int:id>'
-	- Updtae Actor info and insert it db
-	- Request Argument : `Actor id`  `name` `email` `age` `salary` 
+- PATCH '/actors/<int:id>'
+	- Updtae Actor info and insert it DB
+	- Request Argument : `Actor id`  `name` `email` `age` `salary`
 	- Returns : JSON response containing request status
 	- example
 		```
@@ -151,8 +174,8 @@ Following is the demonstration of each endpoint.
 		}
 		```
 
-- PATCH '/Movies/<int:id>'
-	- Updtae Movie info and insert it db
+- PATCH '/movies/<int:id>'
+	- Updtae Movie info and insert it DB
 	- Request Argument : `Movie id` `name` `length` `genre`
 	- Returns : JSON response containing request status
 	- example
@@ -162,8 +185,8 @@ Following is the demonstration of each endpoint.
 		}
 		```
 
-- DELETE '/Actors/<int:id>'
-	- Delete Actor from db
+- DELETE '/actors/<int:id>'
+	- Delete Actor from DB
 	- Request Argument : Actor id
 	- Returns : JSON response containing request status
 	- example
@@ -173,8 +196,8 @@ Following is the demonstration of each endpoint.
 		}
 		```
 
-- DELETE '/Movies/<int:id>'
-	- Delete Movie from db
+- DELETE '/movies/<int:id>'
+	- Delete Movie from DB
 	- Request Argument : Movie id
 	- Returns : JSON response containing request status
 	- example
@@ -193,28 +216,10 @@ This app has 3 users. each user has his own privileges.
 	- Can view actors and movies
 
 - Casting Director
-	- All permissions a Casting Assistant has and…
+	- All permissions of a Casting Assistant and…
 	- Add or delete an actor from the database
 	- Modify actors or movies
 
 - Executive Producer
-	- All permissions a Casting Director has and…
+	- All permissions of a Casting Director and…
 	- Add or delete a movie from the database
-
-Please Note, to use any endpoint, you must send the request with user access token in Authorization header, which are provided in `setup.sh`.
-
-
-## Testing
-
-To run the tests, run
-```
-dropdb capstone_test
-createdb capstone_test
-psql capstone_test < db.psql
-python test_app.py
-```
-
-## Deployment
-
-This app is deployed on heruko under this [link](https://capstone-fsnd-which-not-taken.herokuapp.com/).
-
