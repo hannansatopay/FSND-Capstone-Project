@@ -26,8 +26,8 @@ def create_app(test_config=None):
         msg = 'Welcome to the Casting Agency'
         return jsonify(msg)
 
-    @app.route('/Actors', methods=['GET'])
-    @requires_auth(permission='get:Actors')
+    @app.route('/actors', methods=['GET'])
+    @requires_auth(permission='get:actors')
     def get_Actors(payload):
         '''
         This endpoint is responsible for returning all Actors from DB
@@ -40,8 +40,8 @@ def create_app(test_config=None):
         }
         return jsonify(result)
 
-    @app.route('/Actors/<int:id>', methods=['DELETE'])
-    @requires_auth(permission='delete:Actors')
+    @app.route('/actors/<int:id>', methods=['DELETE'])
+    @requires_auth(permission='delete:actors')
     def delete_Actors(payload, id):
         '''
         This endpoint delete Actor given his ID
@@ -55,8 +55,8 @@ def create_app(test_config=None):
         except Exception:
             abort(422)
 
-    @app.route('/Actors', methods=['POST'])
-    @requires_auth(permission='post:Actors')
+    @app.route('/actors', methods=['POST'])
+    @requires_auth(permission='post:actors')
     def insert_Actors(payload):
         '''
         This endpoint insert Actor information
@@ -78,8 +78,8 @@ def create_app(test_config=None):
         except Exception:
             abort(404)
 
-    @app.route('/Actors/<int:id>', methods=['PATCH'])
-    @requires_auth(permission='patch:Actors')
+    @app.route('/actors/<int:id>', methods=['PATCH'])
+    @requires_auth(permission='patch:actors')
     def update_Actors(payload, id):
         '''
         This endpoint updates an actor info given his id
@@ -101,8 +101,8 @@ def create_app(test_config=None):
             'success': True,
         })
 
-    @app.route('/Movies', methods=['GET'])
-    @requires_auth(permission='get:Movies')
+    @app.route('/movies', methods=['GET'])
+    @requires_auth(permission='get:movies')
     def get_Movies(payload):
         '''
         This endpoint is responsible for returning all Movies from DB
@@ -115,8 +115,8 @@ def create_app(test_config=None):
         }
         return jsonify(result)
 
-    @app.route('/Movies/<int:id>', methods=['DELETE'])
-    @requires_auth(permission='delete:Movies')
+    @app.route('/movies/<int:id>', methods=['DELETE'])
+    @requires_auth(permission='delete:movies')
     def delete_Movies(payload, id):
         '''
         This endpoint delete Movie given his ID
@@ -130,8 +130,8 @@ def create_app(test_config=None):
         except Exception:
             abort(422)
 
-    @app.route('/Movies', methods=['POST'])
-    @requires_auth(permission='post:Movies')
+    @app.route('/movies', methods=['POST'])
+    @requires_auth(permission='post:movies')
     def insert_Movies(payload):
         '''
         This endpoint insert Movie information
@@ -152,8 +152,8 @@ def create_app(test_config=None):
         except Exception:
             abort(404)
 
-    @app.route('/Movies/<int:id>', methods=['PATCH'])
-    @requires_auth(permission='patch:Movies')
+    @app.route('/movies/<int:id>', methods=['PATCH'])
+    @requires_auth(permission='patch:movies')
     def update_Movies(payload, id):
         '''
         This endpoint updates a movie given it's id
